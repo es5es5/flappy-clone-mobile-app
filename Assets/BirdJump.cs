@@ -18,12 +18,17 @@ public class BirdJump : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            GetComponent<AudioSource>().Play();
             rb.velocity = Vector2.up * jumpPower; // (0, 1)
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (Score.score >= Score.bestScore)
+        {
+            Score.bestScore = Score.score;
+        }
         SceneManager.LoadScene("GameOverScene");
     }
 }
